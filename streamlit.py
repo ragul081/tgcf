@@ -19,11 +19,11 @@ def deploy_tgcf():
     # Install numpy with PEP 517
     subprocess.run(["pip", "install", "numpy==1.23.5", "--use-pep517"])
 
-    # Install TGCF
-    subprocess.run(["pip", "install", "tgcf"])
+    # Install Poetry
+    subprocess.run(["pip", "install", "poetry"])
 
-    # Check TGCF version
-    subprocess.run(["tgcf", "--version"])
+    # Run Poetry install
+    subprocess.run(["poetry", "install"])
 
     # Set environment variable
     with open(".env", "w") as env_file:
