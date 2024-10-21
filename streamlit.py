@@ -13,6 +13,12 @@ def deploy_tgcf():
     activate_venv = os.path.join(".venv", "bin", "activate")
     subprocess.run(["source", activate_venv], shell=True)
 
+    # Upgrade pip, setuptools, and wheel
+    subprocess.run(["pip", "install", "--upgrade", "pip", "setuptools", "wheel"])
+
+    # Install numpy with PEP 517
+    subprocess.run(["pip", "install", "numpy==1.23.5", "--use-pep517"])
+
     # Install TGCF
     subprocess.run(["pip", "install", "tgcf"])
 
@@ -28,5 +34,3 @@ def deploy_tgcf():
 
 if __name__ == "__main__":
     deploy_tgcf()
-
-
