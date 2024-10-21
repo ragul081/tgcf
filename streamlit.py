@@ -4,7 +4,7 @@ import os
 st.title("TGCF Web Interface")
 
 # Load environment variable
-password = os.getenv("PASSWORD", "Not Set")
+password = os.getenv("PASSWORD", "tgcf")
 st.write(f"Password: {password}")
 
 st.write("TGCF is running...")
