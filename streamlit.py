@@ -1,15 +1,32 @@
-import streamlit as st
 import os
+import subprocess
 
-st.title("TGCF Web Interface")
+def deploy_tgcf():
+    # Create project directory
+    os.makedirs("my-tgcf", exist_ok=True)
+    os.chdir("my-tgcf")
 
-# Load environment variable
-password = os.getenv("PASSWORD", "tgcf")
-st.write(f"Password: {password}")
+    # Create virtual environment
+    subprocess.run(["python3", "-m", "venv", ".venv"])
+    
+    # Activate virtual environment
+    activate_venv = os.path.join(".venv", "bin", "activate")
+    subprocess.run(["source", activate_venv], shell=True)
 
-st.write("TGCF is running...")
+    # Install TGCF
+    subprocess.run(["pip", "install", "tgcf"])
 
-# Placeholder for future TGCF controls
-if st.button("Run TGCF"):
-    st.write("TGCF command executed!")
+    # Check TGCF version
+    subprocess.run(["tgcf", "--version"])
+
+    # Set environment variable
+    with open(".env", "w") as env_file:
+        env_file.write("PASSWORD=tgcf\n")
+
+    # Start TGCF web interface
+    subprocess.run(["tgcf-web"])
+
+if __name__ == "__main__":
+    deploy_tgcf()
+
 
