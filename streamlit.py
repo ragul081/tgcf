@@ -8,22 +8,18 @@ def deploy_tgcf():
 
     # Create virtual environment
     subprocess.run(["python3", "-m", "venv", ".venv"])
-    
-    # Activate virtual environment
-    activate_venv = os.path.join(".venv", "bin", "activate")
-    subprocess.run(["source", activate_venv], shell=True)
 
-    # Upgrade pip, setuptools, and wheel
-    subprocess.run(["pip", "install", "--upgrade", "pip", "setuptools", "wheel"])
+    # Upgrade pip and setuptools
+    subprocess.run([".venv/bin/pip", "install", "--upgrade", "pip", "setuptools", "wheel"])
 
-    # Install numpy with PEP 517
-    subprocess.run(["pip", "install", "numpy==1.23.5", "--use-pep517"])
+    # Install compatible numpy version
+    subprocess.run([".venv/bin/pip", "install", "numpy==1.22.0"])  # Adjusted version
 
     # Install Poetry
-    subprocess.run(["pip", "install", "poetry"])
+    subprocess.run([".venv/bin/pip", "install", "poetry"])
 
     # Run Poetry install
-    subprocess.run(["poetry", "install"])
+    subprocess.run([".venv/bin/poetry", "install"])
 
     # Set environment variable
     with open(".env", "w") as env_file:
