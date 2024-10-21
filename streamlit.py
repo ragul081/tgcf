@@ -13,7 +13,7 @@ def deploy_tgcf():
     subprocess.run([".venv/bin/pip", "install", "--upgrade", "pip", "setuptools", "wheel"])
 
     # Install compatible numpy version
-    subprocess.run([".venv/bin/pip", "install", "numpy==1.22.0"])  # Adjusted version
+    subprocess.run([".venv/bin/pip", "install", "numpy"])  # Adjusted version
 
     # Install Poetry
     subprocess.run([".venv/bin/pip", "install", "poetry"])
